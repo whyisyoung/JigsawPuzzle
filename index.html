@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+      <!-- Global site tag (gtag.js) - Google Analytics -->
+      <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=UA-45384067-4"></script> -->
+      <!-- <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-45384067-4');
+      </script> -->
+
+      <!-- Google Tag Manager -->
+      <!-- <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-P7GQCGG');</script> -->
+      <!-- End Google Tag Manager -->
+
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="./css/jp.css">
+
+      <!-- Begin Jekyll SEO tag v2.7.1 -->
+      <title>Jigsaw Puzzle: Selective ML Backdoor Attack</title>
+      <meta name="generator" content="Jekyll v3.9.0">
+      <meta property="og:title" content="Jigsaw Puzzle: Selective ML Backdoor Attack">
+      <meta property="og:locale" content="en_US">
+      <link rel="canonical" href="https://whyisyoung.github.io/JigsawPuzzle/">
+      <meta property="og:url" content="https://whyisyoung.github.io/JigsawPuzzle/">
+      <meta property="og:site_name" content="JigsawPuzzle">
+      <meta name="twitter:card" content="summary">
+      <meta property="twitter:title" content="Jigsaw Puzzle: Selective ML Backdoor Attack">
+      <script type="application/ld+json">
+      {"@type":"WebSite","headline":"Jigsaw Puzzle: Selective ML Backdoor Attack","url":"https://whyisyoung.github.io/JigsawPuzzle/","name":"JigsawPuzzle","@context":"https://schema.org"}</script>
+      <!-- End Jekyll SEO tag -->
+  </head>
+
+  <body data-new-gr-c-s-check-loaded="14.1000.0" data-gr-ext-installed="">
+      <!-- Google Tag Manager (noscript) -->
+      <!-- <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P7GQCGG"
+      height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript> -->
+      <!-- End Google Tag Manager (noscript) -->
+
+      <header>
+      </header>
+
+      <div class="container">
+      <section id="main_content">
+          <h1 id="title">Jigsaw Puzzle: Selective ML Backdoor Attack</h1>
+
+          <nav>
+            <a href="#intro">Introduction</a>
+            <a href="#paper">Paper</a>
+            <a href="#access">Access</a>
+            <a href="#team">Team</a>
+            <a href="#org">Organizations</a>
+          </nav>
+          <p>Under construction. Please come back for details.</p>
+
+          <!-- <h2 id="intro">Introduction</h2> -->
+
+
+          <!-- <p>Further details can be found in our paper “BODMAS: An Open Dataset for Learning based Temporal Analysis of PE Malware” [<a href="https://liminyang.web.illinois.edu/data/DLS21_BODMAS.pdf", target="_blank">PDF</a>], Deep Learing and Security Workshop 2021 (co-located with IEEE Security and Privacy 2021).</p>
+
+<p>If you end up building on this dataset as part of a project or publication, please include a reference to our paper:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>@inproceedings{bodmas,
+  title = {BODMAS: An Open Dataset for Learning based Temporal Analysis of PE Malware},
+  author = {Yang, Limin and Ciptadi, Arridhana and Laziuk, Ihar and Ahmadzadeh, Ali and Wang, Gang},
+  booktitle = {4th Deep Learning and Security Workshop},
+  year = {2021}
+}
+</code></pre></div></div>
+
+<h2 id="access">Access</h2>
+<ol>
+<li>We cannot release the original file for the benign software due to copyright considerations. But we will host the original binaries of malware samples.
+
+  <p id="notice"> To avoid misuse, please read and agree to the following conditions before sending us emails. </p>
+
+  <ul>
+    <li>Please email Limin (liminy2@illinois.edu) and CC Gang (gangw@illinois.edu). Also, please include your Gmail address in the body so that I can add you to the google drive folder where the dataset is stored.
+    <li>Do not share the data with any others (except your co-authors for the project). We are happy to share with other researchers based upon their requests.</li>
+    <li>Explain in a few sentences of your plan to do with these binaries. It should not be a precise plan.</li>
+    <li>If you are in academia, contact us using your institution email and provide us a webpage registered at the university domain that contains your name and affiliation.</li>
+    <li>If you are in research (industrial) labs, send us an email from your company’s email account and introduce yourself and company. In the email, please attach a justification letter (in PDF format) in official letterhead. The letter needs to state clearly the reasons why this dataset is being requested.</li>
+  </ul>
+
+  <p>Please note that an email not following the conditions might be ignored. And we will keep the public list of organizations accessing these samples at the bottom.</p>
+</li>
+</ol>
+
+<h2 id="get-started">Get Started</h2>
+<ul>
+<li>
+  <p>To load the feature vectors, you need to load <code class="language-plaintext highlighter-rouge">bodmas.npz</code> (a numpy compressed format) with the following code. Note that the feature values are unnormalized, which is okay for classifiers like gradient-boosted decision tree, but you may need to normalize them first when applying an MLP classifier.</p>
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+
+<span class="n">filename</span> <span class="o">=</span> <span class="s">'bodmas.npz'</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s">'X'</span><span class="p">]</span>  <span class="c1"># all the feature vectors
+</span><span class="n">y</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s">'y'</span><span class="p">]</span>  <span class="c1"># labels, 0 as benign, 1 as malicious
+</span>
+<span class="k">print</span><span class="p">(</span><span class="n">X</span><span class="p">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">y</span><span class="p">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="c1"># &gt;&gt;&gt; (134435, 2381), (134435,)
+</span></code></pre></div>    </div>
+</li>
+<li>
+  <p>For <code class="language-plaintext highlighter-rouge">bodmas_metadata.csv</code>, it has three columns, indicating SHA-256, when the sample first appeared, and malware family. <code class="language-plaintext highlighter-rouge">If the malware family is empty, then it’s a benign sample.</code></p>
+</li>
+<li>
+  <p>Top malware families and their number of samples (&gt;= 1,000) are as follows:</p>
+  <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1. sfone: 4729
+2. wacatac: 4694
+3. upatre: 3901
+4. wabot: 3673
+5. small: 3339
+6. ganelp: 2232
+7. dinwod: 2057
+8. mira: 1960
+9. berbew: 1749
+10. sillyp2p: 1616
+11. ceeinject: 1169
+12. gepys: 1124
+13. benjamin: 1071
+14. musecador: 1054
+</code></pre></div>
+</div>
+</li>
+</ul>
+
+<h2 id="organizations">Organizations Reguested Our Dataset</h2>
+<ol>
+<li>Simon Fraser University, Canada</li>
+<li>Oracle Labs</li>
+<li>Columbia University</li>
+<li>Telkom University, Indonesia</li>
+<li>University of Alberta, Canada</li>
+<li>Orange Inc., France</li>
+<li>Beijing Institute of Technology</li>
+<li>College Of Engineering Pune, India</li>
+<li>University of Salerno, Italy</li>
+<li>Shanghai Jiao Tong University</li>
+<li>Southeast University</li>
+<li>Beijing University of Posts and Telecommunications</li>
+<li>Guizhou Normal University</li>
+<li>Korea University</li>
+<li>GuiLin University of Electronic and Technology</li>
+<li>New York University</li>
+<li>University of Chinese Academy of Sciences</li>
+<li>University of the West of England (UWE) Bristol</li>
+<li>University College Dublin, Ireland</li>
+<li>Women Engineering College, Ajmer, India</li>
+<li>Beijing University of Technology</li>
+<li>Air University Islamabad, Pakistan</li>
+<li>Eastern Connecticut State University</li>
+<li>Yonsei University, South Korea</li>
+<li>Arizona State University</li>
+<li>Bandung Institute of Technology, Indonesia</li>
+<li>University of Southampton, United Kingdom</li>
+<li>Xidian University</li>
+<li>University of Balamand, Lebanon</li>
+<li>The University of Chicago</li>
+<li>Xinjiang University</li>
+<li>University of Turin, Italy</li>
+<li>Punjab University College of Information Technology, Pakistan</li>
+<li>Guangzhou University</li>
+<li>Middle East Technical University, Turkey</li>
+<li>Microsoft</li>
+<li>Sana'a University, Yemen</li>
+<li>HarfangLab, France</li>
+<li>Purdue University Northwest</li>
+<li>PSG College of Technology, India</li>
+<li>University of Windsor, Canada</li>
+<li>Georgia Tech</li>
+<li>De Montfort University, United Kingdom</li>
+<li>Ghent University, Belgium</li>
+<li>Iowa State University</li>
+<li>Macquarie University, Australia</li>
+<li>Hongik University, South Korea</li>
+<li>UiTM Shah Alam, Malaysia</li>
+<li>Hanoi University of Science and Technology, Vietnam</li>
+<li>Ain Shams university, Egypt</li>
+<li>Open University of Catalonia, Spain</li>
+<li>Amrita Vishwa Vidyapeetham, India</li>
+<li>National University of Science and Technology, Zimbabwe</li>
+<li>Nagoya University, Japan</li>
+<li>Institute of Information Security, Japan</li>
+<li>Heriot-Watt University, United Kingdom</li>
+<li>Edinburgh Napier University, United Kingdom</li>
+<li>Istanbul University-Cerrahpaşa, Turkey</li>
+<li>Zhejiang University</li>
+<li>Hanyang University, South Korea</li>
+<li>Army Engineering University of PLA</li>
+<li>Purdue University</li>
+<li>University of Molise, Italy</li>
+<li>SharpAI LLC</li>
+<li>Silesian University of Technology, Poland</li>
+<li>Florida State University</li>
+<li>University Of Bath, United Kingdom</li>
+<li>National University of Computer and Emerging Sciences, Pakistan</li>
+<li>Chungnam National University, South Korea</li>
+<li>PeeploTech</li>
+<li>Damietta University, Egypt</li>
+<li>Queen's University Belfast, United Kingdom</li>
+<li>Vilnius Tech, Italy</li>
+<li>Indian Institute of Technology Roorkee, India</li>
+<li>Beijing University of Civil Engineering and Architecture</li>
+<li>University of Quebec in Outaouais, Canada</li>
+<li>National Institute of Technology Raipur, India</li>
+<li>University of Colorado Colorado Springs</li>
+<li>University of Technology and Applied Sciences, Oman</li>
+<li>University of Portsmouth, United Kingdom</li>
+<li>Brno University of Technology, Czechia</li>
+<li>Royal Holloway, University of London, United Kingdom</li>
+<li>The University of Alabama in Huntsville</li>
+
+
+</ol>
+
+  <h2 id="contact">Contributors</h2>
+      <p><a href="https://liminyang.web.illinois.edu">Limin Yang</a>, Ph.D. student at UIUC (Contact me via liminy2@illinois.edu).</p>
+      <p>Arridhana Ciptadi, Blue Hexagon Inc.</p>
+      <p>Ihar Laziuk, Blue Hexagon Inc.</p>
+      <p>Ali Ahmadzadeh, Blue Hexagon Inc.</p>
+      <p><a href="https://gangw.cs.illinois.edu">Gang Wang</a>, Assistant Professor at UIUC</p>
+  </section> -->
+
+  <br>
+  <p class="footer">Last updated:
+    <script>
+      t = new Date(document.lastModified).toLocaleDateString()
+      document.write(t);
+    </script>
+    </p>
+  </div>
+
+
+<br> <br> <br>
+</body></html>
